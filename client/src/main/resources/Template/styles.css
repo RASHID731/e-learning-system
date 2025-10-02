@@ -1,0 +1,3 @@
+.hinted-text-field {
+    -fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);
+}

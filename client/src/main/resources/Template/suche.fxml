@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="760.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafxdemo.controller.SucheController">
+   <children>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label fx:id="titleLabel" prefHeight="59.0" prefWidth="619.0" text="Mitglieder zu Gruppe hinzufügen" HBox.hgrow="ALWAYS">
+               <font>
+                  <Font size="41.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="10.0" top="10.0" />
+               </HBox.margin>
+            </Label>
+            <VBox alignment="CENTER_RIGHT" prefHeight="90.0" prefWidth="129.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Button alignment="CENTER_RIGHT" cancelButton="true" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="74.0" text="Abbrechen">
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Label fx:id="loggedInUserLabel" alignment="CENTER_RIGHT">
+                     <VBox.margin>
+                        <Insets right="10.0" top="20.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets top="10.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+      </HBox>
+      <TableView fx:id="sucheErgebnisseTable" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+         <placeholder>
+            <Label text="Keine Ergebnisse" />
+         </placeholder>
+      </TableView>
+      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+         <children>
+            <TextField fx:id="sucheTextField" prefHeight="25.0" prefWidth="213.0" promptText="Nutzername, Vorname, Nachname..." />
+            <Button fx:id="sucheButton" defaultButton="true" mnemonicParsing="false" onAction="#suchen" text="Suchen">
+               <HBox.margin>
+                  <Insets right="100.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="addButton" alignment="CENTER" mnemonicParsing="false" onAction="#addSelected" text="Ausgewählte hinzufügen">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin></Button>
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</VBox>

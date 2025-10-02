@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+
+<BorderPane fx:id="root" prefHeight="600.0" prefWidth="1140.0" style="-fx-background-color: white;" stylesheets="@usecase.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafxdemo.controller.UseCaseController">
+    <top>
+        <HBox id="menubar" spacing="5">
+            <Button onAction="#drawNewUseCase" text="Use-Case" />
+            <Button onAction="#drawNewActor" text="Akteur" />
+            <Button onAction="#drawNewSystem" text="System" />
+            <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#saveCurrentCanvasContents" text="Save" visible="false" />
+         <Pane HBox.hgrow="ALWAYS" />
+            <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#loadCanvasContents" text="Load" visible="false" />
+         <Button fx:id="hilfeButton" mnemonicParsing="false" onAction="#hilfe" text="Hilfe" />
+            <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" text="Zurück" />
+        </HBox>
+    </top>
+    <center>
+        <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true">
+            <Canvas fx:id="canvas" />
+        </ScrollPane>
+    </center>
+
+</BorderPane>

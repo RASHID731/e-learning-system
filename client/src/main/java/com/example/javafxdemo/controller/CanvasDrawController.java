@@ -1,0 +1,82 @@
+package com.example.javafxdemo.controller;
+
+import com.example.javafxdemo.usecaseeditor.drawablecomponent.DrawableComponent;
+import javafx.application.Platform;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+
+/**
+ * Controller class for drawing on the canvas.
+ */
+public class CanvasDrawController {
+    // The canvas to draw on
+    private Canvas canvas;
+
+    // The graphics context of the canvas to draw on
+    private GraphicsContext gc;
+
+    // The controller that manages the canvas content
+    private CanvasContentManagementController canvasContentManagementController;
+
+    // Thicknesses for drawing lines
+    private final int DRAW_THICKNESS = 1;       // "normal" width lines for drawing
+    private final int HIGHLIGHT_THICKNESS = 4;  // Thicker lines to indicate which box is highlighted
+
+    /**
+     * Constructor for the CanvasDrawController class.
+     *
+     * @param canvasContentManagementController The controller for managing the canvas content.
+     */
+    public CanvasDrawController(CanvasContentManagementController canvasContentManagementController) {
+        this.canvasContentManagementController = canvasContentManagementController;
+        this.canvas = canvasContentManagementController.getCanvas();
+        this.gc = canvas.getGraphicsContext2D();
+    }
+
+    /**
+     * Draws a DrawableComponent in black onto the canvas at the specified X and Y coordinates,
+     * with a specified height and width.
+     *
+     * @param component The DrawableComponent to draw.
+     */
+    public void drawFinalComponent(DrawableComponent component) {
+        issueDrawingCommand(() -> component.draw(canvas.getGraphicsContext2D(), Color.BLACK, DRAW_THICKNESS));
+    }
+
+    /**
+     * Draws a DrawableComponent in light gray onto the canvas at the specified X and Y coordinates,
+     * with a specified height and width. This is intended as a preview of what the object will look
+     * like when clicked.
+     *
+     * @param component The DrawableComponent to draw.
+     */
+    public void drawPreviewComponent(DrawableComponent component) {
+        issueDrawingCommand(() -> component.draw(canvas.getGraphicsContext2D(), Color.LIGHTGRAY, DRAW_THICKNESS));
+    }
+
+    /**
+     * Used to run a GUI updating Runnable on the JavaFX application thread.
+     *
+     * @param task The Runnable to execute.
+     */
+    public void issueDrawingCommand(Runnable task) {
+        Platform.runLater(() -> {
+            gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+            for (DrawableComponent component : canvasContentManagementController.getDrawnComponents()) {
+                if (component.equals(canvasContentManagementController.getHighlightedComponent()))
+                    component.draw(gc, Color.RED, HIGHLIGHT_THICKNESS);
+                else
+                    component.draw(gc, Color.BLACK, DRAW_THICKNESS);
+            }
+        });
+        Platform.runLater(task);
+    }
+
+    /**
+     * Redraws the canvas with no changes to the contents.
+     */
+    public void redrawCanvas() {
+        issueDrawingCommand(() -> {});
+    }
+}
