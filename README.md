@@ -4,11 +4,11 @@
 This dual-module application combines a Spring Boot REST API with a JavaFX desktop client so lecturers can publish assignments, organise student groups, supervise collaborative use-case diagrams, and capture submissions with grading notes. Students authenticate, explore tasks, enrol in groups, and co-edit diagrams that are continuously synchronised with the backend.
 
 ## Tech Stack
-- Java 17 with Maven Wrapper
-- Spring Boot 3.1 (core, web, data JPA, client-side security dependency), Lombok
-- JavaFX 21 EA (graphics, controls, FXML)
-- Jackson, Reflections, Javatuples
-- MySQL 8.x persisted through Hibernate (`ddl-auto=update`)
+- Backend: Java, Spring Boot (web, data JPA, security starter), Lombok
+- Desktop Client: JavaFX (FXML views, canvas editor) with Spring Boot DI
+- Data: MySQL via Hibernate/JPA
+- Tooling & Libraries: Maven Wrapper, Jackson, Reflections, Javatuples
+- Testing: JUnit, Spring Boot Test
 
 ## Architecture
 - **Client (`client/`)**: JavaFX 21 UI with Spring Boot wiring. Controllers coordinate FXML scenes, share state through `GUIApplication`, and issue HTTP calls for authentication, data fetching, enrolment, grading, and diagram persistence.
